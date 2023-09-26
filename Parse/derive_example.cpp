@@ -74,10 +74,10 @@ namespace {
 
 	int Example() {
 		auto members = GetMembers(TypeWrapper<MyStruct>()).value();
-		auto atributes = GetAttributes(TypeWrapper<MyStruct>{}).value();
+		auto attributes = GetAttributes(TypeWrapper<MyStruct>{}).value();
 		std::cout << "\nderive example:\n";
 		std::cout << "struct attributes:\n";
-		for (auto& attribute : atributes) {
+		for (auto& attribute : attributes) {
 			std::cout << attribute.m_Data << '\n';
 		}
 		return 0;
