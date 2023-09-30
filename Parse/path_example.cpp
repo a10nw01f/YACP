@@ -35,7 +35,7 @@ namespace {
 				return (decltype(obj)&)obj;
 			}
 			else {
-				return func(GetMember(obj, Identifier_t<path[index.get()]>()), index.Next());
+				return func(GetMember(obj, Identifier_t<path[index.get()]>()), index.inc());
 			}
 		}(FWD(v), 0_ix);
 	}
@@ -70,15 +70,15 @@ namespace {
 					constexpr auto members = current.get_if<DefaultVectorType<Identifier>>();
 					if constexpr (iterate) {
 						for (auto&& v : obj) {
-							func(v, index.Next());
+							func(v, index.inc());
 						}
 					}
 					else if constexpr (pipe) {
 						constexpr auto action = Scope{}(Identifier_t<pipe->m_Action>());
-						func(action(FWD(obj)), index.Next());
+						func(action(FWD(obj)), index.inc());
 					}
 					else {
-						func(GetPathImpl<*members>(FWD(obj)), index.Next());
+						func(GetPathImpl<*members>(FWD(obj)), index.inc());
 					}
 				}
 			}(FWD(obj), 0_ix);

@@ -175,7 +175,7 @@ public:
 					return false;
 				}
 				if constexpr (std::is_same_v<Empty, decltype(parse_result)::value_type>) {
-					return func(parser_index.Next(), result_idx);
+					return func(parser_index.inc(), result_idx);
 				}
 				else {
 					if constexpr (is_tup) {
@@ -185,7 +185,7 @@ public:
 						result = *parse_result;
 					}
 
-					return func(parser_index.Next(), result_idx.Next());
+					return func(parser_index.inc(), result_idx.inc());
 				}
 			}
 		}(IndexWrapper<0>(), IndexWrapper<0>());
@@ -241,7 +241,7 @@ struct VariantParserFunc {
 					return Ret(*parse_result);
 				}
 				else {
-					return func(index.Next());
+					return func(index.inc());
 				}
 			}
 		}(IndexWrapper<0>());

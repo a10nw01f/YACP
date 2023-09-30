@@ -66,7 +66,7 @@ struct ValueWrapper {
 
 template<int I>
 struct IndexWrapper : ValueWrapper<I> {
-	constexpr auto Next() const { return IndexWrapper<I + 1>(); }
+	constexpr auto inc() const { return IndexWrapper<I + 1>(); }
 };
 
 template<class T, class... Ts>
